@@ -236,14 +236,33 @@ def find_extrema(a, b, c, d, e, f):
 
 """Run find_extrema(a, b, c, d, e, f) for the test cases provided in the handout for Problem 1."""
 def test_problem1():
-	print("1) local min/max of -1x^3 + 2x^2 + -1x + 1 in [-1, 2]: " + str(find_extrema(-1, 2, -1, 2, -1, 1)))
-	print("2) local min/max of 1x^3 + -2x^2 + -1x + 1 in [1, 2]: " + str(find_extrema(1, 2, 1, -2, -1, 1)))
-	print("3) local min/max of 4x^3 + 8x^2 + -4x + -2 in [-2, 1]: " + str(find_extrema(-2, 1, 4, 8, -4, -2)))
-	print("4) local min/max of 1x^3 + 0x^2 + 1x + -3 in [-1, 2]: " + str(find_extrema(-1, 2, 1, 0, 1, -3)))
-	print("5) local min/max of 10^-14 x^3 + 9x^2 + -3x + 0 in [-0.3, 0.6]: " + str(find_extrema(-0.3, 0.6, 10**(-14), 9, -3, 0)))
-	print("6) local min/max of 0x^3 + 0x^2 + 0x + 1.7 in [-1, 2]: " + str(find_extrema(-1, 2, 0, 0, 0, 1.7)))
-	print("7) local min/max of -3x^3 + 9x^2 + -10^-14 x + 0 in [0, 3]: " + str(find_extrema(0, 3, -3, 9, -10**(-14), 0)))
-	print("8) local min/max of 0x^3 + -2x^2 + 3x + -1 in [0, 1]: " + str(find_extrema(0, 1, 0, -2, 3, -1)))
+	# print("1) local min/max of -1x^3 + 2x^2 + -1x + 1 in [-1, 2]: " + str(find_extrema(-1, 2, -1, 2, -1, 1)))
+	# print("2) local min/max of 1x^3 + -2x^2 + -1x + 1 in [1, 2]: " + str(find_extrema(1, 2, 1, -2, -1, 1)))
+	# print("3) local min/max of 4x^3 + 8x^2 + -4x + -2 in [-2, 1]: " + str(find_extrema(-2, 1, 4, 8, -4, -2)))
+	# print("4) local min/max of 1x^3 + 0x^2 + 1x + -3 in [-1, 2]: " + str(find_extrema(-1, 2, 1, 0, 1, -3)))
+	# print("5) local min/max of 10^-14 x^3 + 9x^2 + -3x + 0 in [-0.3, 0.6]: " + str(find_extrema(-0.3, 0.6, 10**(-14), 9, -3, 0)))
+	# print("6) local min/max of 0x^3 + 0x^2 + 0x + 1.7 in [-1, 2]: " + str(find_extrema(-1, 2, 0, 0, 0, 1.7)))
+	# print("7) local min/max of -3x^3 + 9x^2 + -10^-14 x + 0 in [0, 3]: " + str(find_extrema(0, 3, -3, 9, -10**(-14), 0)))
+	# print("8) local min/max of 0x^3 + -2x^2 + 3x + -1 in [0, 1]: " + str(find_extrema(0, 1, 0, -2, 3, -1)))
+
+	# p2 = find_extrema(1, 2, 1, -2, -1, 1)
+	# p3 = find_extrema(-2, 1, 4, 8, -4, -2)
+	# p4 = find_extrema(-1, 2, 1, 0, 1, -3)
+	# p5 = find_extrema(-0.3, 0.6, 10**(-14), 9, -3, 0)
+	# p6 = find_extrema(-1, 2, 0, 0, 0, 1.7)
+	p7 = find_extrema(0, 3, -3, 9, -10**(-14), 0)
+	# p8 = find_extrema(0, 1, 0, -2, 3, -1)
+
+	# print(evaluate_cubic(1, -2, -1, 1, p2[0]), evaluate_cubic(1, -2, -1, 1, p2[1]))
+	# print(evaluate_cubic(4, 8, -4, -2, p3[0]), evaluate_cubic(4, 8, -4, -2, p3[1]))
+	# print(evaluate_cubic(1, 0, 1, -3, p4[0]), evaluate_cubic(1, 0, 1, -3, p4[1]))
+	# print(evaluate_cubic(10**(-14), 9, -3, 0, p5[0]), evaluate_cubic(10**(-14), 9, -3, 0, p5[1]))
+	# print(evaluate_cubic(0, 0, 0, 1.7, p6[0]), evaluate_cubic(0, 0, 0, 1.7, p6[1]))
+	# print(evaluate_cubic(-3, 9, -10**(-14), 0, p7[0]), evaluate_cubic(-3, 9, -10**(-14), 0, p7[1]))
+	# print(evaluate_cubic(0, -2, 3, -1, p8[0]), evaluate_cubic(0, -2, 3, -1, p8[1]))
+
+	print(p7)
+
 
 	
 ### Question 2 ###
@@ -266,8 +285,18 @@ def nested_radicals(n):
 
 """Evaluate the Ramanujan nested radicals from N = 1 to N = 40, inclusive."""
 def test_problem2():
-	for i in range(1, 41):
-		print("Ramanujan Nested Radical at n = " + str(i) + ": " + str(nested_radicals(i)))
+	# for i in range(1, 41):
+	# 	print("Ramanujan Nested Radical at n = " + str(i) + ": " + str(nested_radicals(i)))
+	print(nested_radicals(1))
+	print(nested_radicals(2))
+	print(nested_radicals(3))
+	print(nested_radicals(4))
+	print(nested_radicals(5))
+	print(nested_radicals(6))
+	print(nested_radicals(38))
+	print(nested_radicals(39))
+	print(nested_radicals(40))
 
-	print("Limit appears to be 3.")
+
+	# print("Limit appears to be 3.")
 

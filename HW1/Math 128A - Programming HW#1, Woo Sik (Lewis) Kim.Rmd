@@ -1,0 +1,97 @@
+---
+title: "Math 128A - Programming Assignment #1"
+subtitle: "Math 128A, Fall 2018"
+author: "Woo Sik (Lewis) Kim, SID: 25544445"
+output: pdf_document
+---
+
+The programs were written in Python.
+
+**Question 1**
+
+Case 1) $f(x) = -x^3 + 2x^2 -x + 1$ on $[-1, 2]$. $(a = -1, b = 2, c = -1, d = 2, e = -1, f = 1)$ 
+
+- Location of min/max: $x_{min} = 0.333333$, $x_{max} = 1.0$.
+
+- Evaluation at min/max: $p(x_{min}) = 0.851852$, $p(x_{max}) = 1.0$.
+
+Case 2) $f(x) = x^3 -2x -x + 1$ on $[1, 2]$. $(a = 1, b = 2, c = 1, d = -2, e = -1, f = 1)$
+
+- Location of min/max: $x_{min} = 1.548584$, $x_{max} = 2$.
+
+- Evaluation at min/max: $p(x_{min}) = -1.631130$, $p(x_{max}) = -1$.
+
+Case 3) $f(x) = 4x^3 + 8x^2 -4x -2$ on $[-2, 1]$. $(a = -2, b = 1, c = 4, d = 8, e = -4, f = -2)$
+
+- Location of min/max: $x_{min} = 0.215250$, $x_{max} = -1.548584$.
+
+- Evaluation at min/max: $p(x_{min}) = -2.450447$, $p(x_{max}) = 8.524521$.
+
+Case 4) $f(x) = x^3 + x - 3$ on $[-1, 2]$. $(a = -1, b = 2, c = 1, d = 0, e = 1, f = -3)$
+
+- Location of min/max: $x_{min} = -1$, $x_{max} = 4$.
+
+- Evaluation at min/max: $p(x_{min}) = -5$, $p(x_{max}) = 7$.
+
+Case 5) $f(x) = 10^{-14}x^3 + 9x^2 -3x$ on $[-0.3, 0.6]$. $(a = -0.3, b = 0.6, c = 10^{-14}, d = 9, e = -3, f = 0)$
+
+- Location of min/max: $x_{min} = 0.177635$, $x_{max} = -0.3$.
+
+- Evaluation at min/max: $p(x_{min}) = -0.248918$, $p(x_{max}) = 1.70999$ (most likely a floating point issue; $p(x_{max}) = 1.71$).
+
+Case 6) $f(x) = 1.7$ on $[-1, 2]$ $(a = -1, b = 2, c = d = e = 0, f = 1.7)$
+
+- Location of min/max: $x_{min} = -1$, $x_{max} = 2$.
+
+- Evaluation at min/max: $p(x_{min}) = 1.7$, $p(x_{max}) = 1.7$.
+
+Case 7) $f(x) = -3x^3 + 9x^2 -10^{-14}x$ on $[0, 3]$. $(a = 0, b = -3, c = -3, d = 9, e = -10^{-14}, f = 0)$
+
+- Location of min/max: $x_{min} = 5.921189464667501e-30$, $x_{max} = 1.999999$ (most likely a floating point issue; $x_{max} = 2$.
+
+- Evaluation at min/max: $p(x_{min}) = -2.7657458437834548e-30$, $p(x_{max}) = 11.99999$ (most likely a floating point issue; $p(x_{max}) = 12$).
+
+Case 8) $f(x) = -2x^2 + 3x -1$ on $[0, 1]$. $(a = 0, b = 1, c = 0, d = -2, e = 3, f = -1)$
+
+- Location of min/max: $x_{min} = 0$, $x_{max} = 0.75$.
+
+- Evaluation at min/max: $p(x_{min}) = -1$, $p(x_{max}) = 0.125$.
+
+_Plots for cases #3 and #7 are on the next 2 pages._
+
+
+![$f(x) = 4x^3 + 8x^2 -4x -2$ on $[-2, 1]$. Extrema are marked with a black dot. Blue lines represent the bounds.](case3.png)
+
+![$f(x) = -3x^3 + 9x^2 -10^{-14}x$ on $[0, 3]$. Extrema are marked with a black dot. Orange lines represent the bounds.](case7.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+**Question 2**
+
+We evaluate $a_n$ for $1 \le n \le 40$:
+
+$a_1 = 1$, $a_2 = 1.7320508075688772$, $a_3 = 2.23606797749979$, $a_4 = 2.559830165300118$, $a_5 = 2.755053261329896$, $a_6 = 2.867102928237745$, ... , $a_{38} = 2.9999999999454037$, $a_{39} = 2.9999999999725286$, $a_{40} = 2.99999999998618$.
+
+From the first $40$ terms of the sequence $a_n$, it appears that $\lim_{n\to\infty} a_n = 3$.
+
+Graph of $\ln(|a_n - a|)$ vs. $n$ and $y = 3 - (\ln(3))n$:
+
+
+
+
+
+From the graph, it appears that $\beta_n = x$ is appropriate for the upper bound $a_n - a = O(\beta_n)$.
+
