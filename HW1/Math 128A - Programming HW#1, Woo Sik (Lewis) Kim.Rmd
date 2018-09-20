@@ -7,7 +7,21 @@ output: pdf_document
 
 The programs were written in Python.
 
+To run the code for Q1, run ``find_extrema(a, b, c, d, e, f)``. ``test_q1()`` provides solutions to the given test cases. The polynomials were graphed using Desmos.
+
+To run the code for Q2, run ``nested_radicals(n)``, where ``n`` is the $n$th term of the sequence. ``test_q2()`` provides solutions to the first $40$ terms of the sequence. The code for the graph in Q2 is in ``q2plot.py``. 
+
 **Question 1**
+
+The algorithm for question 1 is straightforward; given 6 numbers, $a, b, c, d, e,$ and $f$, we find the coefficients to the first derivative (a quadratic) of the cubic in the form $f(x) = cx^3 + dx^2 + ex + f$. Using these coefficients, we find the solution to $f'(x) = 0$ through the quadratic formula. If the roots are imaginary, it means there are no turning points in the cubic, and we are done (min/max depend only on $a, b$ and evaluations $f(a), f(b)$). Otherwise, we have 2 solutions, $x_1$ and $x_2$. We plug these 2 values into the second derivative $f''(x)$ (determined by the coefficients $6c$ and $2d$) to see if $x_1, x_2$ are $< 0, = 0,$ or $> 0$. Less than $0$ implies local max, greater than $0$ implies local min, and equal to $0$ implies saddle point.
+
+After determining which of $x_1$ and $x_2$ are local minimums and maximums, we check if either or both of $x_1$ and $x_2$ lie in $[a, b]$, and determine the local min/max from there (e.g. if both $x_1$ and $x_2$ are in $[a, b]$, then the local extrema occur at these 2 points. If neither are in it, then the local extrema depend on evaluations of $f(a), f(b)$ (smaller is min, bigger is max)). A more detailed breakdown of these cases are in ``hw1.py``. 
+
+The edge cases for this algorithm are when $c$ and/or $d$ and/or $e$ are $0$. If $c = 0$ and $d, e$ are not, then we simply have a quadratic, and we run an algorithm for finding the extrema for a quadratic by calculating the vertex $h = \frac{-b}{2a}$ and the concavity of the parabola.
+
+If $c, d = 0$, then we have a simple line, in which case the local min/max depends entirely on whether or not the slope is positive or negative.
+
+\newpage
 
 Case 1) $f(x) = -x^3 + 2x^2 -x + 1$ on $[-1, 2]$. $(a = -1, b = 2, c = -1, d = 2, e = -1, f = 1)$ 
 
@@ -57,41 +71,52 @@ Case 8) $f(x) = -2x^2 + 3x -1$ on $[0, 1]$. $(a = 0, b = 1, c = 0, d = -2, e = 3
 
 - Evaluation at min/max: $p(x_{min}) = -1$, $p(x_{max}) = 0.125$.
 
-_Plots for cases #3 and #7 are on the next 2 pages._
-
 
 ![$f(x) = 4x^3 + 8x^2 -4x -2$ on $[-2, 1]$. Extrema are marked with a black dot. Blue lines represent the bounds.](case3.png)
 
 ![$f(x) = -3x^3 + 9x^2 -10^{-14}x$ on $[0, 3]$. Extrema are marked with a black dot. Orange lines represent the bounds.](case7.png)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 \newpage
 
 **Question 2**
 
+The algorithm for question 2 is an iterative evaluation (iterating backwards from $n$). We reassign a value ``nested_sum`` to an inner square root each step, i.e.:
+
+```python
+nested_sum = 1
+for k in range(1, n, -1):
+  nested_sum = math.sqrt(1 + k*nested_sum)
+```
+
 We evaluate $a_n$ for $1 \le n \le 40$:
 
-$a_1 = 1$, $a_2 = 1.7320508075688772$, $a_3 = 2.23606797749979$, $a_4 = 2.559830165300118$, $a_5 = 2.755053261329896$, $a_6 = 2.867102928237745$, ... , $a_{38} = 2.9999999999454037$, $a_{39} = 2.9999999999725286$, $a_{40} = 2.99999999998618$.
+$a_1 = 1$
+
+$a_2 = 1.7320508075688772$
+
+$a_3 = 2.23606797749979$
+
+$a_4 = 2.559830165300118$
+
+$a_5 = 2.755053261329896$
+
+...
+
+$a_{38} = 2.9999999999454037$
+
+$a_{39} = 2.9999999999725286$
+
+$a_{40} = 2.99999999998618$
 
 From the first $40$ terms of the sequence $a_n$, it appears that $\lim_{n\to\infty} a_n = 3$.
 
-Graph of $\ln(|a_n - a|)$ vs. $n$ and $y = 3 - (\ln(3))n$:
+_Graph of $\ln(|a_n - a|)$ vs. $n$ and $y = 3 - (\ln(3))n$ is on the next page._
 
+\newpage
 
+![Green: Graph of $\ln(|a_n - a|)$ vs. $n$. Blue: $y = 3 - (\ln(3))n$.](q2)
 
+From the graph, it appears that $\beta_n = 3 - (\ln(3))n$, i.e. $\beta_n = y$ is appropriate for the upper bound $O(\beta_n) = a_n - a$.
 
-
-From the graph, it appears that $\beta_n = x$ is appropriate for the upper bound $a_n - a = O(\beta_n)$.
+We can verify this by representing $\ln(|a_n - a|)$ as a continuous function $f$, letting $g(x) = 3 - (\ln(3))x$, and calculating $\lim_{n\to\infty} \frac{f(x)}{g(x)}$. Doing so gives us a limit of $0$, which, by asymptotic analysis, shows that $f = O(g)$.
 
