@@ -1,7 +1,0 @@
----
-title: "Math 128A - Programming Assignment #"
-subtitle: "Math 128A, Fall 2018"
-author: "Woo Sik (Lewis) Kim"
-output: pdf_document
----
-
