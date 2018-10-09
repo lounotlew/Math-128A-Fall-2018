@@ -72,7 +72,11 @@ def L(x, j, xin):
 	return product
 
 
-print(interpolate1(xinU1, xoutU1))
+# print(interpolate1(xinC3, xoutC3))
+
+# # Results using scipy:
+# poly = scipy.interpolate.lagrange(xinC3, xoutC3)
+# print([poly(x) for x in xoutC3])
 
 
 

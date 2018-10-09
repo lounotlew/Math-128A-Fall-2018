@@ -40,7 +40,7 @@ xoutC3 = np.array([f(x) for x in xinC3.tolist()])
 xoutC4 = np.array([f(x) for x in xinC4.tolist()])
 
 
-"""."""
+"""Baycentric interpolation."""
 def interpolate2(xin, xout):
 	yout = []
 
@@ -54,7 +54,7 @@ def interpolate2(xin, xout):
 	return yout
 
 
-"""."""
+"""P(x) when x != xj in Barycentric interpolations."""
 def barycentric(x, xin):
 	top_sum = 0
 	bottom_sum = 0
@@ -69,7 +69,7 @@ def barycentric(x, xin):
 	return top_sum/bottom_sum
 
 
-"""."""
+"""Lambda coefficients in Baycentric interpolation."""
 def lambda_coeff(j, xin):
 	product = 1
 
@@ -80,7 +80,11 @@ def lambda_coeff(j, xin):
 	return 1/product
 
 
-print(interpolate2(xinU1, xoutU1))
+# print(interpolate2(xinU1, xoutU1))
+
+# # Results using Scipy:
+# poly = scipy.interpolate.BarycentricInterpolator(xinU1, xoutU1)
+# print([poly.__call__(x) for x in xoutU1])
 
 
 
