@@ -29,30 +29,70 @@ xinC4 = np.array([m.cos(x) for x in np.linspace(-m.pi, 0, 99+1).tolist()])
 
 # Generating y-outs:
 
-youtU1 = np.array([f(x) for x in xinU1.tolist()])
-youtU2 = np.array([f(x) for x in xinU2.tolist()])
-youtU3 = np.array([f(x) for x in xinU3.tolist()])
-youtU4 = np.array([f(x) for x in xinU4.tolist()])
+xoutU1 = np.array([f(x) for x in xinU1.tolist()])
+xoutU2 = np.array([f(x) for x in xinU2.tolist()])
+xoutU3 = np.array([f(x) for x in xinU3.tolist()])
+xoutU4 = np.array([f(x) for x in xinU4.tolist()])
 
-youtC1 = np.array([f(x) for x in xinC1.tolist()])
-youtC2 = np.array([f(x) for x in xinC2.tolist()])
-youtC3 = np.array([f(x) for x in xinC3.tolist()])
-youtC4 = np.array([f(x) for x in xinC4.tolist()])
-
-
-"""Return a numpy poly1d object after performing scipy's Lagrange interpolation on a set of
-   x-coordinates and y-coordinates."""
-def interpolate1(x, y, as_coeff=False):
-	return scipy.interpolate.lagrange(x, y)
+xoutC1 = np.array([f(x) for x in xinC1.tolist()])
+xoutC2 = np.array([f(x) for x in xinC2.tolist()])
+xoutC3 = np.array([f(x) for x in xinC3.tolist()])
+xoutC4 = np.array([f(x) for x in xinC4.tolist()])
 
 
-"""Return a scipy BarycentricInterpolator object after performing scipy's Barycentric interpolation
-   on a set of x-coordinates and y-coordinates."""
-def interpolate2(x, y):
-	return scipy.interpolate.BarycentricInterpolator(x, y)
+"""."""
+def interpolate2(xin, xout):
+	yout = []
+
+	for x in xout:
+		if x in xin:
+			yout.append(f(x))
+
+		else:
+			yout.append(barycentric(x, xin))
+
+	return yout
+
+
+"""."""
+def barycentric(x, xin):
+	top_sum = 0
+	bottom_sum = 0
+
+	for j in range(len(xin)):
+		top_sum += (lambda_coeff(j, xin)*f(xin[j]))/(x - xin[j])
+
+
+	for j in range(len(xin)):
+		bottom_sum += lambda_coeff(j, xin)/(x - xin[j])
+
+	return top_sum/bottom_sum
+
+
+"""."""
+def lambda_coeff(j, xin):
+	product = 1
+
+	for k in range(len(xin)):
+		if j != k:
+			product *= (xin[j] - xin[k])
+
+	return 1/product
+
+
+print(interpolate2(xinU1, xoutU1))
 
 
 
-print(interpolate1(xinC1, youtC1)(7))
-print(interpolate2(xinC1, youtC1).__call__(7))
+
+
+
+
+
+
+
+
+
+
+
 
