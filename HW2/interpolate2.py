@@ -86,17 +86,3 @@ def lambda_coeff(j, xin):
 # poly = scipy.interpolate.BarycentricInterpolator(xinU1, xoutU1)
 # print([poly.__call__(x) for x in xoutU1])
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
